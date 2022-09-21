@@ -6,7 +6,8 @@ require('dotenv').config();
 // create the connection to database
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: process.env.DB_USER,
+  user: 'DITT MYSQL BRUKERNAVN HER',
+  password: 'DITT MYSQL PASSORD HER',
   database: 'todo'
 });
 
@@ -21,6 +22,7 @@ router.get('/', function(req, res, next) {
 router.post('/addtodo', function(req, res, next) {
   try {
     const TODO = req.body.name;
+    // kjør mysql spørring
    connection.execute(
       'INSERT INTO todo (todoName, createdAt) VALUES (?, NOW())',
      [TODO],
