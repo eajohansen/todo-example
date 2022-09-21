@@ -28,7 +28,7 @@ router.post('/addtodo', function(req, res, next) {
         if(result) {
           return res.status(200).send('Todo lagret');
         } else {
-          return res.status(401).send(result);
+          return res.status(401).send('Noe gikk galt');
         }
 
       }
@@ -44,13 +44,13 @@ router.post('/addtodo', function(req, res, next) {
 router.get('/gettodo', function(req, res, next) {
   try {
     connection.query(
-      'SELECT * FROM todo',
+      'SELECT * FROM todo ORDER BY createdAt DESC',
       function(err, results, fields) {
         if(results) {
           return res.status(200).send(results);
         } else {
           console.log()
-          return res.status(400).send('Noe gikk feil');
+          return res.status(401).send('Noe gikk feil');
         }
       }
     );
@@ -71,8 +71,7 @@ router.post('/deletetodo', function(req, res, next) {
         if(results) {
           return res.status(200).send('Todo slettet!');
         } else {
-          console.log()
-          return res.status(400).send('Noe gikk feil');
+          return res.status(401).send('Noe gikk feil');
         }
       }
     );

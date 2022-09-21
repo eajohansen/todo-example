@@ -15,7 +15,7 @@ CREATE TABLE Todo (
   todoName varchar(50) NOT NULL,
   todoDescription varchar(250),
   completed BOOLEAN DEFAULT(false),
-  createdAt DATETIME,
+  createdAt DATETIME
  /* userId INT NULL,
   FOREIGN KEY (userId) REFERENCES user(userId) */
 );
