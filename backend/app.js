@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', indexRouter);
 
 app.all('*', (req, res, next) => {
-  res.send('404 ERROR');
+  res.status(401).send('404 ERROR');
 });
 
 app.listen(port, () => {
