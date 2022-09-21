@@ -2,7 +2,7 @@ const messages = document.getElementById('msg');
 const showTodo = document.getElementById('todoList');
 const form = document.getElementById('form');
 
-//funksjonen som sender info fra frontend til backend
+//funksjonen som sender info fra frontend til backend, kan gjøres med form.
 form.addEventListener('submit', async function(e) {
   e.preventDefault();
   const todoName = document.getElementById('todo').value;
@@ -29,7 +29,8 @@ form.addEventListener('submit', async function(e) {
     meldinger(data, false)
   }
 })
-// selve id'en til den todo'en blir sendt som parameter i funksjonen på knappen ved hver knapp.
+
+// selve id'en til den todo'en blir sendt som parameter i funksjonen på knappen ved hver knapp. Kan også gjøres uten form
 async function slett(slettmeg){
   event.preventDefault()
   // selve sendingen
@@ -66,11 +67,15 @@ async function refresh() {
     const resp = await fetch('http://127.0.0.1:5500/api/gettodo', {
       method: 'GET',
     })
-
     const data = await resp.json()
-    data.forEach(item => {
-      todoList.innerHTML += `<form><p>${item.todoName}</p> <button onclick="slett(${item.todoId})" class="delete-todo">X</button></form>`;
-    })
+    if(resp.status === 200) {
+      data.forEach(item => {
+        todoList.innerHTML += `<form><p>${item.todoName}</p> <button onclick="slett(${item.todoId})" class="delete-todo">X</button></form>`;
+      })
+    } else {
+      meldinger('Noe gikk feil', false)
+    }
+
   }
   catch (e) {
     console.log(e)
