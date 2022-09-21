@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="container">
+    <div class="todo">
+        <header>
+            <label for="todo">
+                Min todoliste
+            </label>
+            <span id="msg">
+            </span>
+        </header>
+        <form id="form" method="POST">
+            <input id="todo" placeholder="Legg til Todo">
+            <button type="submit">Legg til</button>
+        </form>
+        <div id="todoList" class="show-todo-container">
+        </div>
+    </div>
+</div>
+<script src="todo.js"></script>
+</body>
+</html>
